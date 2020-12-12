@@ -1,3 +1,34 @@
+library(shinyWidgets)
+library(eeptools)
+library(tidyverse)
+#install.packages("shinyalert")
+library(shinyalert)
+library(shiny)# How we create the app.
+library(shinycssloaders) # Adds spinner icon to loading outputs.
+library(shinydashboard) # The layout used for the ui page.
+library(leaflet) # Map making. Leaflet is more supported for shiny.
+library(dplyr)  
+library(shinyjs)
+library(tidyr)
+
+Allergies <- read.csv("allergies_by_variable_wider.csv")
+Careplans <- read.csv("careplans_wider.csv")
+#Conditions <- read.csv("DATA//conditions_wider.csv")
+Devices <- read.csv("devices_wider.csv")
+Imaging_Studies <- read.csv("imagingstudies_wider.csv")
+Immunizations <- read.csv("Immune_wider.csv")
+#Medications <- read.csv("DATA//medications_wider.csv")
+Observations <- read.csv("merged_Observations.csv")
+#Organizations <- read.csv("merged_Organizations.csv")
+PatientSex <- read.csv("Patients_wider_sex.csv")
+PatientEthnicity <- read.csv("Patients_wider_ethnicity.csv")
+Payers <- read.csv("Payers_wider.csv")
+#Procedures <- read.csv("DATA//procedures_wider.csv")
+SmokingStatus <- read.csv("smokingstatus.csv")
+BMI <- read.csv("bodymassindex.csv")
+
+
+
 shinyUI(fluidPage(
     useShinyjs(),
     useShinyalert(),
