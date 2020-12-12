@@ -13,17 +13,17 @@ library(tidyr)
 
 Allergies <- read.csv("DATA//allergies_by_variable_wider.csv")
 Careplans <- read.csv("DATA//careplans_wider.csv")
-Conditions <- read.csv("DATA//conditions_wider.csv")
+#Conditions <- read.csv("DATA//conditions_wider.csv")
 Devices <- read.csv("DATA//devices_wider.csv")
 Imaging_Studies <- read.csv("DATA//imagingstudies_wider.csv")
 Immunizations <- read.csv("DATA//Immune_wider.csv")
-Medications <- read.csv("DATA//medications_wider.csv")
+#Medications <- read.csv("DATA//medications_wider.csv")
 Observations <- read.csv("merged_Observations.csv")
 #Organizations <- read.csv("merged_Organizations.csv")
 PatientSex <- read.csv("DATA//Patients_wider_sex.csv")
 PatientEthnicity <- read.csv("DATA//Patients_wider_ethnicity.csv")
 Payers <- read.csv("DATA//Payers_wider.csv")
-Procedures <- read.csv("DATA//procedures_wider.csv")
+#Procedures <- read.csv("DATA//procedures_wider.csv")
 SmokingStatus <- read.csv("DATA//smokingstatus.csv")
 BMI <- read.csv("DATA//bodymassindex.csv")
 
@@ -148,14 +148,14 @@ shinyUI(fluidPage(
                                                        plain = TRUE,
                                                        value = FALSE),
                                                    #Toggle for Conditions
-                                                   prettyToggle(
-                                                     inputId = "ConditionCategory",
-                                                       label_on = "Conditions",
-                                                       label_off = "Conditions",
-                                                       icon_on = icon("ok-circle", lib = "glyphicon"),
-                                                       icon_off = icon("remove-circle", lib = "glyphicon"),
-                                                       plain = TRUE,
-                                                       value = FALSE),
+                                                  # prettyToggle(
+                                                   #  inputId = "ConditionCategory",
+                                                    #   label_on = "Conditions",
+                                                     #  label_off = "Conditions",
+                                                      # icon_on = icon("ok-circle", lib = "glyphicon"),
+                                                       #icon_off = icon("remove-circle", lib = "glyphicon"),
+                                                       #plain = TRUE,
+                                                       #value = FALSE),
                                                    #Toggle for Devices
                                                    prettyToggle(
                                                        inputId = "DeviceCategory",
@@ -175,23 +175,23 @@ shinyUI(fluidPage(
                                                        plain = TRUE,
                                                        value = FALSE),
                                                    #Toggle for Medications
-                                                   prettyToggle(
-                                                       inputId = "MedicationCategory",
-                                                       label_on = "Medications",
-                                                       label_off = "Medications",
-                                                       icon_on = icon("ok-circle", lib = "glyphicon"),
-                                                       icon_off = icon("remove-circle", lib = "glyphicon"),
-                                                       plain = TRUE,
-                                                       value = FALSE),
+                                      #             prettyToggle(
+                                       #                inputId = "MedicationCategory",
+                                        #               label_on = "Medications",
+                                         #              label_off = "Medications",
+                                          #             icon_on = icon("ok-circle", lib = "glyphicon"),
+                                           #            icon_off = icon("remove-circle", lib = "glyphicon"),
+                                            #           plain = TRUE,
+                                             #          value = FALSE),
                                                    #Toggle for Procedures
-                                                   prettyToggle(
-                                                       inputId = "ProcedureCategory",
-                                                       label_on = "Procedures",
-                                                       label_off = "Procedures",
-                                                       icon_on = icon("ok-circle", lib = "glyphicon"),
-                                                       icon_off = icon("remove-circle", lib = "glyphicon"),
-                                                       plain = TRUE,
-                                                       value = FALSE),
+                                    #               prettyToggle(
+                                     #                  inputId = "ProcedureCategory",
+                                      #                 label_on = "Procedures",
+                                       #                label_off = "Procedures",
+                                        #               icon_on = icon("ok-circle", lib = "glyphicon"),
+                                         #              icon_off = icon("remove-circle", lib = "glyphicon"),
+                                          #             plain = TRUE,
+                                           #            value = FALSE),
                                                    #Toggle for Insurance
                                                    prettyToggle(
                                                        inputId = "PayerCategory",
@@ -249,7 +249,7 @@ shinyUI(fluidPage(
                                                 selectizeInput(inputId = "CareplanVariables", label = "Types of Careplans:", choices = Careplans, multiple = TRUE),
                                                 
                                                 #multi-variable selection for Conditions
-                                                selectizeInput(inputId = "ConditionVariables", label = "Types of Conditions:", choices = Conditions, multiple = TRUE),
+                                       #         selectizeInput(inputId = "ConditionVariables", label = "Types of Conditions:", choices = Conditions, multiple = TRUE),
                                                 
                                                 #multi-variable selection for Devices
                                                 selectizeInput(inputId = "DeviceVariables", label = "Types of Devices:", choices = Devices, multiple = TRUE),
@@ -258,10 +258,10 @@ shinyUI(fluidPage(
                                                 selectizeInput(inputId = "ImagingVariables", label = "Imaging Studies:", choices = Imaging_Studies, multiple = TRUE),
                                                 
                                                 #multi-variable selection for Medications
-                                                selectizeInput(inputId = "MedicationVariables", label = "Medications:", choices = Medications, multiple = TRUE),
+                                       #         selectizeInput(inputId = "MedicationVariables", label = "Medications:", choices = Medications, multiple = TRUE),
                                                 
                                                 #multi-variable selection for Procedures
-                                                selectizeInput(inputId = "ProcedureVariables", label = "Procedures:", choices = Procedures, multiple = TRUE),
+                                       #        selectizeInput(inputId = "ProcedureVariables", label = "Procedures:", choices = Procedures, multiple = TRUE),
                                                 
                                                 #multi-variable selection for Payers
                                                 selectizeInput(inputId = "PayerVariables", label = "Payers:", choices = Payers, multiple = TRUE),
@@ -301,11 +301,11 @@ server <- function(input, output, session) {
     #Hide varselect dropdowns for all variables
     hide("AllergyVariables")
     hide("CareplanVariables")
-    hide("ConditionVariables")
+   # hide("ConditionVariables")
     hide("DeviceVariables")
     hide("ImagingVariables")
-    hide("MedicationVariables")
-    hide("ProcedureVariables")
+    #hide("MedicationVariables")
+    #hide("ProcedureVariables")
     hide("PayerVariables")
     hide("PatientSex")
     hide("PatientRaceEthnicity")
@@ -322,9 +322,9 @@ server <- function(input, output, session) {
             show("CareplanVariables", anim = TRUE, animType = "fade", time = 0.5)
         else hide("CareplanVariables")
         
-        if (input$ConditionCategory == TRUE) 
-            show("ConditionVariables", anim = TRUE, animType = "fade", time = 0.5)
-        else hide("ConditionVariables")
+ #       if (input$ConditionCategory == TRUE) 
+  #          show("ConditionVariables", anim = TRUE, animType = "fade", time = 0.5)
+   #     else hide("ConditionVariables")
         
         if (input$DeviceCategory == TRUE) 
             show("DeviceVariables", anim = TRUE, animType = "fade", time = 0.5)
@@ -334,13 +334,13 @@ server <- function(input, output, session) {
             show("ImagingVariables", anim = TRUE, animType = "fade", time = 0.5)
         else hide("ImagingVariables")
         
-        if (input$MedicationCategory == TRUE) 
-            show("MedicationVariables", anim = TRUE, animType = "fade", time = 0.5)
-        else hide("MedicationVariables")
+  #      if (input$MedicationCategory == TRUE) 
+   #         show("MedicationVariables", anim = TRUE, animType = "fade", time = 0.5)
+    #    else hide("MedicationVariables")
         
-        if (input$ProcedureCategory == TRUE) 
-            show("ProcedureVariables", anim = TRUE, animType = "fade", time = 0.5)
-        else hide("ProcedureVariables")
+ #       if (input$ProcedureCategory == TRUE) 
+  #          show("ProcedureVariables", anim = TRUE, animType = "fade", time = 0.5)
+   #     else hide("ProcedureVariables")
         
         if (input$PayerCategory == TRUE)
             show("PayerVariables", anim = TRUE, animType = "fade", time = 0.5)
